@@ -3,6 +3,7 @@
 \docType{data}
 \name{wage2}
 \alias{wage2}
+\alias{wage2}
 \title{Do education and IQ have an interactive effect in the log(wage) equation?}
 \format{A data frame with 935 rows and 17 variables}
 \usage{
@@ -13,15 +14,7 @@ data(wage2)
 \description{
 A dataset contains data about payroll workers
 
-\itemize{
-  \item wage. numeric: wages for payroll workers
-  \item educ. numeric: years of education
-  \item KWW. factor: education levels. 
-  \item IQ. factor: gender 
-  \item age. numeric: age of respondent 
-  \item hours. numeric: hours worked
-  \item exper. numeric: experience
-}
+A dataset contains data about payroll workers
 }
 \details{
 \itemize{
@@ -33,6 +26,15 @@ A dataset contains data about payroll workers
   \item hours. numeric: hours worked
   \item exper. numeric: experience
 }
+
+\itemize{
+  \item wage. numeric: wages for payroll workers
+  \item educ. numeric: years of education
+  \item KWW. factor: education levels. 
+  \item IQ. factor: gender 
+  \item age. numeric: age of respondent 
+  \item hours. numeric: hours worked
+  \item exper. numeric: experience
+}
 }
 \keyword{datasets}
-

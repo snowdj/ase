@@ -1,13 +1,14 @@
+##' Summarize regression objects
+##'
 ##' \code{summary_rob} produces result summaries of the results of various model
 ##' fitting functions using as default heteroskedastic robust standard errors. 
 ##'
-##' @title Object Summaries
 ##' @param object an object for which a summary is desired.
 ##' @param alpha significance level for the Wald test.
 ##' @param type the type of heteroskedastic robust variance estimator.
 ##' @param omit_factor whether to omit factor in output.
 ##' @param cluster for the plm method cluster standard errors at the individual level.
-##' @return A summary_rob object.
+##' @return A \code{summary_rob} object.
 ##' @author Giuseppe Ragusa
 ##' @export
 ##' 
@@ -56,14 +57,14 @@ summary_rob.lm <- function(object, alpha = 0.05, type = c("HC1", "const", "HC",
   
   sobj$coefficients <- b
   ind <- is.na(b)
-  
-  
+
+  sobj$fstatistic <- c(value=NA, numdf = NA, dendf = Inf)
   
   if(ncoef>1) {
+    try({
     f <- waldtest(object, vcov=vcovHC(object, type = type), test = 'Chisq')
     sobj$fstatistic <- c(value=f$Chisq[2], numdf = abs(f$Df[2]), dendf = Inf)
-  } else {
-    sobj$fstatistic <- c(value=NA, numdf = NA, dendf = Inf)
+    })
   }
   
   class(sobj) <- "summary_rob"
@@ -117,12 +118,12 @@ summary_rob.plm <- function(object, alpha = 0.05, cluster = FALSE, type = c("HC1
                                                                         "HC4", "HC4m", "HC5")) {
   type <- match.arg(type)
   if(cluster)
-    obj <- plm:::summary.plm(obj, .vcov = plm:::vcovHC.plm(obj, type=type, cluster = "group"))
+    out <- plm:::summary.plm(object, .vcov = plm:::vcovHC.plm(object, type=type, cluster = "group"))
   else
-    obj <- plm:::summary.plm(obj, .vcov = plm:::vcovHC.plm(obj, method = "white1", type=type))
+    out <- plm:::summary.plm(object, .vcov = plm:::vcovHC.plm(object, method = "white1", type=type))
   
-  class(obj) <- "summary_rob_plm"
-  return(obj)
+  class(out) <- "summary_rob_plm"
+  return(out)
 }
           
 

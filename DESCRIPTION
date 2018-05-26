@@ -7,11 +7,11 @@ Author: Giuseppe Ragusa <gragusa@luiss.it>
 Maintainer: Giuseppe Ragusa <gragusa@luiss.it>
 Description: Collection of useful functions for "Applied Statistics and
     Econometrics"
-License: MIT
+License: GPL 2.0
 Depends:
     R,
     sandwich,
     lmtest,
     Matrix,
     car
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
